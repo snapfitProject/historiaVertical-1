@@ -1,0 +1,134 @@
+*{
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/*header
+{
+	background: black;
+	padding-top: 1em;
+
+	padding-bottom: 1em;
+}
+
+h1
+{
+	font-family: Century Gothic;
+	color: white;
+	text-align: center;
+	font-size: 3em;
+}*/
+
+section
+ {
+ 	
+ }
+
+#imagenlogo
+{
+	padding-top: 8em;
+	padding-bottom: 1em;
+}
+
+img
+{
+	width: 10em;
+	height: 10em;
+}
+
+#iniciar
+{
+	font-family: Century Gothic;
+	text-align: center;
+	color: black;
+	font-size: 2em;
+}
+
+#usertb
+{
+	font-size: 1.5em;
+}
+
+#passtb
+{
+	font-size: 1.5em;
+}
+
+#button_login
+{
+	font-family: Century Gothic;
+	border-radius: 0.2em;
+	background-color: light grey;
+	font-size: 1.5em;
+	padding-left: 1em;
+	padding-right: 1em;
+	border-bottom: 1px;
+}
+
+#forgotpassword
+{
+	color: blue;
+	font-family: Century Gothic;
+	font-size: 0.5em;
+	text-align: center;
+}
+
+/*@media (max-width: 1280px)
+{
+   header
+   {
+   		text-align: left;
+    	width: 100%;
+   }
+
+@media (max-width: 800px)
+{
+   h1
+   {
+   		text-align: center;
+   		width: 100%;
+   		font-size: 1.5em;
+   }
+}*/
+
+@media (max-width: 800px)
+{
+	section
+	{
+		width: 100%;
+	}
+
+	img
+	{
+		width: 50%
+	}
+
+	#iniciar
+	{
+		width: 100%;
+		font-size: 1.5em;
+		vertical-align: top;
+	}
+
+}
+
+@media (max-width: 500px)
+{
+	#usertb
+	{
+		width: 75%;
+		font-size: 1.2em;
+		vertical-align: top;
+	}
+
+	#passtb
+	{
+		width: 75%;
+		font-size: 1.2em;
+		vertical-align: top;
+	}
+}
+
+
+
