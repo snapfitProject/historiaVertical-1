@@ -19,20 +19,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="0.5in"
-            android:layout_gravity="center"
-            android:orientation="vertical">
+            android:layout_gravity="bottom"
+            android:orientation="horizontal">
                  <ImageButton
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
+                     android:layout_width="120dp"
+                     android:layout_height="60dp"
                      android:id="@+id/btnLogIn"
+                     android:paddingRight="10dp"
                      android:layout_gravity="center"
-                     android:background="@color/Blue"/>
+                     android:background="@android:color/transparent"/>
 
                 <ImageButton
                     android:layout_width="120dp"
                     android:layout_height="60dp"
                     android:id="@+id/btnSignIn"
+                    android:paddingLeft="10dp"
                     android:layout_gravity="center"
-                    android:background="@color/Blue"/>
+                    android:background="@android:color/transparent"/>
         </LinearLayout>
 </LinearLayout>
