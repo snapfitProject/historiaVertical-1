@@ -3,9 +3,8 @@
     package="com.example.admin.prova">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+
 
     <application
         android:allowBackup="true"
@@ -13,8 +12,7 @@
         android:label="SnapFit"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <uses-permission android:name="android.permission.INTERNET" />
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -26,5 +24,9 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity"></activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
 </manifest>
