@@ -27,20 +27,15 @@
 
 
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="0dp"
-        android:paddingTop="16dp"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
-        android:layout_gravity="center">
+
 
 
         <EditText
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="30sp"
+            android:paddingBottom="0dp"
+            android:layout_marginTop="60dp"
             android:hint="username"
             android:textColorHint="@android:color/white"
             android:singleLine="true"
@@ -49,17 +44,10 @@
             android:background="@drawable/edittext"
             />
 
-        </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="0dp"
-        android:paddingTop="16dp"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
-        android:layout_gravity="center">
+
+
 
         <EditText
             android:id="@+id/editTextUserpassword"
@@ -67,22 +55,16 @@
             android:layout_height="30sp"
             android:inputType="textPassword"
             android:hint="password"
+            android:layout_marginTop="15dp"
             android:textColorHint="@android:color/white"
             android:singleLine="true"
             android:imeOptions="actionNext"
             android:theme="@style/border"
             android:background="@drawable/edittext"
             />
-        </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="0dp"
-        android:paddingTop="16dp"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
-        android:layout_gravity="center">
+
+
 
         <EditText
             android:id="@+id/editRepeatPassword"
@@ -91,43 +73,31 @@
             android:textSize="20sp"
             android:inputType="textPassword"
             android:hint="Confirm password"
+            android:layout_marginTop="15dp"
             android:textColorHint="@android:color/white"
             android:singleLine="true"
             android:imeOptions="actionNext"
             android:theme="@style/border"
             android:background="@drawable/edittext"
             />
-    </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="0dp"
-        android:paddingTop="16dp"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
-        android:layout_gravity="center">
+
+
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="30sp"
             android:inputType="textEmailAddress"
             android:hint="E-mail"
+            android:layout_marginTop="15dp"
             android:id="@+id/editTextMail"
             android:theme="@style/border"
             android:background="@drawable/edittext"
             android:imeOptions="actionNext"
+            android:textColorHint="@android:color/white"
              />
-     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="0dp"
-        android:paddingTop="16dp"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
-        android:layout_gravity="center">
+
 
         <EditText
             android:layout_width="match_parent"
@@ -135,14 +105,15 @@
             android:inputType="textEmailAddress"
             android:id="@+id/editTextConfirmMail"
             android:hint="Confirm e-mail"
-            android:theme="@style/border"
+            android:layout_marginTop="15dp"
             android:background="@drawable/edittext"
             android:imeOptions="actionNext"
+            android:textColorHint="@android:color/white"
             />
 
 
 
-    </android.support.design.widget.TextInputLayout>
+
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -150,9 +121,9 @@
         android:id="@+id/btnSignUp"
         android:src="@drawable/signup"
         android:background="@android:color/transparent"
-        android:paddingLeft="30dp"
-        android:paddingTop="10dp"
-        android:layout_gravity="bottom"/>
+        android:layout_marginTop="15dp"
+
+        android:layout_gravity="center"/>
 
     </LinearLayout>
 

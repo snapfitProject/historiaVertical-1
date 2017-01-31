@@ -18,10 +18,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -55,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     JSONArray ArrayLogin = new JSONArray();
                     JSONObject jLogin = new JSONObject();
+
                     try {
                         jLogin.put("username",log.getUsername());
                         jLogin.put("Password",log.getPassword());
@@ -106,42 +109,87 @@ class DoCreateLogin  extends AsyncTask<String, Void, Void>
 
     @Override
     protected Void doInBackground(String... Params) {
+
             String JsonData = Params[0];
 
 
         try {
 
             //Creates http url connection
-            URL url = new URL("http://192.168.134.137/REST/index_login.php");
+            URL url = new URL("http://192.168.134.137/REST/login.php");
+
             HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
 
             //sets http url connection settings
             httpurlconnection.setRequestMethod("POST");
-            httpurlconnection.getResponseCode();
 
-            httpurlconnection.setDoInput(true);
             httpurlconnection.setDoOutput(true);
+            httpurlconnection.setDoInput(true);
 
             httpurlconnection.connect();
 
+
+
             //send data
-            OutputStream out = (DataOutputStream) httpurlconnection.getOutputStream();
+            OutputStream out = httpurlconnection.getOutputStream();
             out.write(JsonData.getBytes());
 
             //get & read data response
-          InputStream in =  httpurlconnection.getInputStream();
+
+          //InputStream in =  httpurlconnection.getInputStream();
             String result= "";
             int byteCharacter;
 
-            while((byteCharacter= in.read())!=-1)
+            //StringBuffer sb = new StringBuffer();
+
+            /*try {
+
+                int chr;
+
+                while ((chr = in.read()) != -1)
+                {
+                    sb.append((char) chr);
+                }
+                result = sb.toString();
+
+            } finally {
+                in.close();
+            }*/
+
+
+
+
+
+
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(httpurlconnection.getInputStream()));
+
+            String inputLine="";
+
+            StringBuffer response = new StringBuffer();
+            do
             {
+                inputLine = in.readLine();
+                response.append(inputLine);
+            }while ((inputLine = in.readLine()) != null);
+
+            result= response.toString();
+            in.close();
+
+            /*
+            do
+            {
+                byteCharacter= in.read();
                 result += (char) byteCharacter;
 
-            }
-
-            Log.d("json api","DoCreateLogIn.doInBackGround Json return: " + result);
-            in.close();
+            }while((byteCharacter= in.read())!=-1);
+            */
+            //in.close();
             out.close();
+            Log.d("json api","DoCreateLogIn.doInBackGround Json return: " + result);
+
+
             httpurlconnection.disconnect();
 
         } catch (IOException e) {
