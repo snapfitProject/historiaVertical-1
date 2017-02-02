@@ -38,10 +38,11 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String username = editTextUsername.getText().toString();
-                String password = editTextPassword.getText().toString();
-                String password2 = editRepeatPassword.getText().toString();
                 String email = editTextMail.getText().toString();
                 String email2 = editTextConfirmMail.getText().toString();
+                String password = editTextPassword.getText().toString();
+                String password2 = editRepeatPassword.getText().toString();
+
 
                 signUp user = new signUp(username,email,email2,password,password2);
 
@@ -50,10 +51,11 @@ public class SignUpActivity extends AppCompatActivity {
 
                 try {
                     jUser.put("username",user.getUsername());
-                    jUser.put("Email", user.getEmail());
-                    jUser.put("Email2", user.getEmail2());
                     jUser.put("password",user.getPassword());
                     jUser.put("password2",user.getPassword2());
+                    jUser.put("Email", user.getEmail());
+                    jUser.put("Email2", user.getEmail2());
+
 
                     //add to JSON array
                     ArrayUser.put(jUser);
@@ -81,7 +83,7 @@ class signUp
     private String email2;
 
 
-    public signUp(String username, String email, String email2, String password, String password2)
+    public signUp(String username, String password, String password2, String email, String email2)
     {
         this.username   = username;
         this.password   = password;
@@ -106,6 +108,7 @@ class signUp
         return email;
     }
     public String getEmail2() {
+
         return email2;
     }
 }

@@ -1,19 +1,44 @@
 <?php
 
  require ('/home/snapfit/vendor/autoload.php');
+header('Content-type: application/json');
 
 
-if(isset($_POST['username']) && isset($_POST['Password'])){
-    $username = $_POST['username'];
-    $password = $_POST['Password'];
-   
-    if(empty($username)){
-        echo "Empty or invalid email address <br/>";
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    $entityBody = file_get_contents('php://input');
+
+    //$body = json_decode(file_get_contents('php://input'),true);
+    $body = json_decode($entityBody,true);
+
+    //$entityBody = file_get_contents('php://input');
+
+    foreach ($array as $key => $username) {
+        # code...
+        $User = $username;
     }
-    if(empty($password)){
-        echo "Enter your password <br/>";
+    foreach ($arry as $key => $Password) {
+        $Pass = $Password;
+    }
+    
+
+    if(empty($User))
+    {
+
+        $message = "Empty or invalid email address";
+        echo json_encode(array('status'=> '1','message' => $message ));
+         
+    }
+
+    if(empty($Pass)){
+    
+       
+        $message = "Enter your password";
+        
+        echo json_encode(array('status'=> '2','message' => $message ));
+     
     }else{
-         $pass_hash = md5($password);
+         $pass_hash = md5($Pass);
     }
 
     $con = new MongoDB\Client;
@@ -39,14 +64,41 @@ if(isset($_POST['username']) && isset($_POST['Password'])){
            // print_r($row);
         }
         
-        if($row['Username'] == $username && $row['Password'] == $pass_hash){
-            echo "You are successfully loggedIn <br/>";
+        if($row['Username'] == $User && $row['Password'] == $pass_hash){
+
+           
+
+            $message = "You are successfully loggedIn";
+
+        
+           echo json_encode(array('status'=> '3','message' => $message ));
+            
         }else{
-            echo "Wrong combination of username and password <br/>";
+
+          
+
+            $message = "Wrong combination of username and password";
+            
+            
+            echo array('message'=>$message);
+            
            // var_dump($cursor);
         }
     }else{
         die("Mongo DB not connected!");
     }
 }
-?>
+/*function deliver_response($status, $status_message, $data)
+{
+
+        header("HTTP://1.1 $status $status_message");
+
+        $response ['status' ]       =$status;
+        $response['status message'] = $status_message;
+        $response['data']           =$data;
+
+        $json_response = json_encode($response);
+
+        echo $json_response;
+}*/
+ ?>

@@ -13,12 +13,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -28,6 +30,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -64,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         //add to JSON array
                         ArrayLogin.put(jLogin);
+
                         Log.d("json api","Json array converted from login " + ArrayLogin.toString() );
 
                         String JsonData= ArrayLogin.toString();
@@ -132,60 +137,41 @@ class DoCreateLogin  extends AsyncTask<String, Void, Void>
 
             //send data
             OutputStream out = httpurlconnection.getOutputStream();
+
             out.write(JsonData.getBytes());
+
+
 
             //get & read data response
 
-          //InputStream in =  httpurlconnection.getInputStream();
+            InputStream in = httpurlconnection.getInputStream();
+
             String result= "";
             int byteCharacter;
 
-            //StringBuffer sb = new StringBuffer();
 
-            /*try {
+            //BufferedReader in = new BufferedReader(
+              //       new InputStreamReader(httpurlconnection.getInputStream()));
 
-                int chr;
+            //String inputLine="";
 
-                while ((chr = in.read()) != -1)
-                {
-                    sb.append((char) chr);
-                }
-                result = sb.toString();
+            //StringBuffer response = new StringBuffer();
 
-            } finally {
-                in.close();
-            }*/
+                //inputLine = in.toString();
+
+            //in.close();
 
 
-
-
-
-
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(httpurlconnection.getInputStream()));
-
-            String inputLine="";
-
-            StringBuffer response = new StringBuffer();
-            do
-            {
-                inputLine = in.readLine();
-                response.append(inputLine);
-            }while ((inputLine = in.readLine()) != null);
-
-            result= response.toString();
-            in.close();
-
-            /*
             do
             {
                 byteCharacter= in.read();
+
                 result += (char) byteCharacter;
 
-            }while((byteCharacter= in.read())!=-1);
-            */
-            //in.close();
+            }while((byteCharacter = in.read())!=-1);
+
+
+            in.close();
             out.close();
             Log.d("json api","DoCreateLogIn.doInBackGround Json return: " + result);
 
@@ -199,6 +185,7 @@ class DoCreateLogin  extends AsyncTask<String, Void, Void>
         return null;
 
     }
+
 
 
 }
