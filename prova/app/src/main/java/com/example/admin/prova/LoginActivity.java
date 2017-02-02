@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -142,33 +143,32 @@ class DoCreateLogin  extends AsyncTask<String, Void, Void>
 
 
 
-            //get & read data response
+            // Read response
+            StringBuilder responseSB = new StringBuilder();
+            BufferedReader in = new BufferedReader(new InputStreamReader(httpurlconnection.getInputStream()));
 
-            InputStream in = httpurlconnection.getInputStream();
+            String line;
+
+            while ( (line = in.readLine()) != null) {
+                responseSB.append(line);
+            }
 
             String result= "";
-            int byteCharacter;
+            result = responseSB.toString();
+
+            //get & read data response
+
+            //InputStream in = httpurlconnection.getInputStream();
 
 
-            //BufferedReader in = new BufferedReader(
-              //       new InputStreamReader(httpurlconnection.getInputStream()));
+            /*int byteCharacter;
 
-            //String inputLine="";
-
-            //StringBuffer response = new StringBuffer();
-
-                //inputLine = in.toString();
-
-            //in.close();
-
-
-            do
-            {
-                byteCharacter= in.read();
+            while((byteCharacter = in.read())!= -1) {
+                byteCharacter = in.read();
 
                 result += (char) byteCharacter;
 
-            }while((byteCharacter = in.read())!=-1);
+            }*/
 
 
             in.close();
