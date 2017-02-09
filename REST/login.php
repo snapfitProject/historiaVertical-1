@@ -1,36 +1,35 @@
 <?php
 
  require ('/home/snapfit/vendor/autoload.php');
-header('Content-type: application/json');
+//header('Content-type: application/json');
 
-
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-    $entityBody = file_get_contents('php://input');
-
-    //$body = json_decode(file_get_contents('php://input'),true);
+$entityBody = file_get_contents('php://input');
     $body = json_decode($entityBody,true);
 
-    //$entityBody = file_get_contents('php://input');
+//if($_SERVER['REQUEST_METHOD'] == 'POST')
 
-    foreach ($array as $key => $username) {
-        # code...
-        $User = $username;
-    }
-    foreach ($arry as $key => $Password) {
-        $Pass = $Password;
-    }
+if(empty($body)){
+    $username   = $_POST['username'];
+    $password   = $_POST['Password'];
+  
+}else{
+    header('Content-type: application/json');
     
-
-    if(empty($User))
-    {
+    foreach ($array as $value) 
+    { 
+        $username   = $value['username'];
+        $password   = $value['Password'];
+    }
+}
+    
+    if(empty($username)){
 
         $message = "Empty or invalid email address";
         echo json_encode(array('status'=> '1','message' => $message ));
          
     }
 
-    if(empty($Pass)){
+    if(empty($password)){
     
        
         $message = "Enter your password";
@@ -38,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         echo json_encode(array('status'=> '2','message' => $message ));
      
     }else{
-         $pass_hash = md5($Pass);
+         $pass_hash = md5($password);
     }
 
     $con = new MongoDB\Client;
@@ -64,7 +63,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
            // print_r($row);
         }
         
-        if($row['Username'] == $User && $row['Password'] == $pass_hash){
+        if($row['Username'] == $username && $row['Password'] == $pass_hash){
 
            
 
@@ -87,18 +86,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     }else{
         die("Mongo DB not connected!");
     }
-}
-/*function deliver_response($status, $status_message, $data)
-{
 
-        header("HTTP://1.1 $status $status_message");
 
-        $response ['status' ]       =$status;
-        $response['status message'] = $status_message;
-        $response['data']           =$data;
-
-        $json_response = json_encode($response);
-
-        echo $json_response;
-}*/
  ?>

@@ -1,19 +1,35 @@
 <?php
 
  //require_once 'DB_Connect.php';
- require ('/home/snapfit/vendor/autoload.php');
+require ('/home/snapfit/vendor/autoload.php');
+//header('Content-type: application/json');
     //define('WP_CACHE', true);
 
-if(isset($_POST['bttn_register'])){
+{
+	$entityBody = file_get_contents('php://input');
+    $body = json_decode($entityBody,true);
 
+//if($_SERVER['REQUEST_METHOD'] == 'POST')
+
+if(empty($body)){
+		$user           = $_POST['username'];
+        $password       = $_POST['password'];
+        $email          = $_POST['Email'];
+        $confirmEmail   = $_POST['Email2'];
+        $password2      = $_POST['password2'];
+}else{
+    header('Content-type: application/json');
     
-
-    $user=$_POST['username'];
-    $email=$_POST['Email'];
-    $confirmEmail=$_POST['Email2'];
-    $password=$_POST['password'];
-    $password2=$_POST['password2'];
-
+    foreach ($array as $value)
+	{
+        $user           = $value['username'];
+        $password       = $value['password'];
+        $email          = $value['Email'];
+        $confirmEmail   = $value['Email2'];
+        $password2      = $value['password2'];
+    }
+}
+ 
     $error = array();
 
         if(empty($user)){
