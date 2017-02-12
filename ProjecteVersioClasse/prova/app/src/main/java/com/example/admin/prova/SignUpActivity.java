@@ -196,7 +196,7 @@ class DoCreateSignUp extends AsyncTask< String, Void, Void>
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-         Toast.makeText(DoCreateSignUp.this.getSignUpActivity(), this.result,   Toast.LENGTH_LONG).show();
+         //Toast.makeText(DoCreateSignUp.this.getSignUpActivity(), this.result,   Toast.LENGTH_LONG).show();
 
     }
 

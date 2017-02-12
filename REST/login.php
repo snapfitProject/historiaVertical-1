@@ -5,22 +5,25 @@
 
 $entityBody = file_get_contents('php://input');
     $body = json_decode($entityBody,true);
+    //header('Content-type: application/json');
 
 //if($_SERVER['REQUEST_METHOD'] == 'POST')
-
-if(empty($body)){
-    $username   = $_POST['username'];
-    $password   = $_POST['Password'];
+//{
+    //$entityBody = file_get_contents('php://input');
+    //$body = json_decode($entityBody,true);
+    if(empty($body)){
+        $username   = $_POST['username'];
+        $password   = $_POST['Password'];
   
-}else{
-    header('Content-type: application/json');
+    }else{
+        header('Content-type: application/json');
     
-    foreach ($array as $value) 
-    { 
-        $username   = $value['username'];
-        $password   = $value['Password'];
+        foreach ($body as $value) 
+        { 
+            $username   = $value['username'];
+            $password   = $value['Password'];
+        }
     }
-}
     
     if(empty($username)){
 
@@ -57,16 +60,15 @@ if(empty($body)){
        
         $rows = $collection->find($qry);
        
-        //iterator_to_array($cursor);
-        foreach ($rows as $row) {
-            # code...
-           // print_r($row);
+         foreach ($rows as $row) {
+          
+            if($row['Username']== $username && $row['Password'] == $pass_hash){
+                $usercorrect = true;
+                $user_found = $row;
+            }
         }
         
-        if($row['Username'] == $username && $row['Password'] == $pass_hash){
-
-           
-
+        if($usercorrect){
             $message = "You are successfully loggedIn";
 
         
@@ -79,13 +81,13 @@ if(empty($body)){
             $message = "Wrong combination of username and password";
             
             
-            echo array('message'=>$message);
+            echo json_encode(array('message'=>$message));
             
            // var_dump($cursor);
         }
     }else{
         die("Mongo DB not connected!");
     }
-
+//}
 
  ?>

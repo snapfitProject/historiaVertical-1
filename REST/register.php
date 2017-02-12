@@ -20,7 +20,7 @@ if(empty($body)){
 }else{
     header('Content-type: application/json');
     
-    foreach ($array as $value)
+    foreach ($body as $value)
 	{
         $user           = $value['username'];
         $password       = $value['password'];
@@ -84,11 +84,16 @@ if(empty($body)){
 
                  foreach ($rows as $row) {
                         # code...
-                       // print_r($row);
-                    }
+                       //if($row['email'] == $email){
+                         //   $email_correct = true;
+                           // $email_row = $row;
+
+                       }
+                
                  
-                 if($row['Email'] != $email && $row['Username'] != $user){
-                     //Save the New user
+                 //if($email_correct){
+                   if($row['Email'] != $email && $row['Username'] != $user) 
+                   {
                    $document = array(
                         'Username'=>$user,
                         'Email'=>$email,
